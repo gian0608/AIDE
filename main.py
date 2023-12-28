@@ -1,7 +1,4 @@
-from langchain_core.messages import AIMessage
-
-from PIL import Image
-import io
+from langchain.schema import AIMessage
 import Authentication as aut
 import Lezioni as lz
 import streamlit as st

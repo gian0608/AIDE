@@ -20,7 +20,6 @@ validated_password = ""
 
 def connetti_database():
     try:
-        # Recupera le informazioni di connessione dal file secrets
         return mysql.connector.connect(**st.secrets["mysql"])
     except Exception as e:
         st.error(f"Errore di connessione al database: {e}")
@@ -37,17 +36,14 @@ def validate_password(password):
 
     if len(password) > 0:
 
-        # Controllo lunghezza
         if len(password) < 8:
             st.error("Password troppo corta")
             return
 
-        # Controllo maiuscolo
         if not any(char.isupper() for char in password):
             st.error("Inserisci almeno 1 maiuscola")
             return
 
-            # Controllo carattere speciale
         if not re.search(r'[!@#$]', password):
             st.error("Inserisci almeno 1 carattere speciale")
             return

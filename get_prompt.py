@@ -77,10 +77,8 @@ def get_lesson_guide(connection):
     try:
         cursor.execute(query, values)
 
-        # Estrai i risultati
         results = cursor.fetchall()
 
-        # Itera attraverso i risultati e aggiungi le informazioni a lesson_guides
         for result in results:
             id_lezione, nome_lezione, descrizione, percorso_file = result
             lesson_guides[nome_lezione] = {

@@ -58,19 +58,16 @@ def run_langchain_model(prompt, lesson_type, lesson_content, lesson_selection, o
 
     try:
 
-        # Set up a streaming handler for the model
         with st.chat_message("assistant"):
             stream_handler = StreamHandler(st.empty())
             model = ChatOpenAI(streaming=True, callbacks=[stream_handler], model="gpt-3.5-turbo-16k",
                                openai_api_key=openai_api_key)
 
-            # Load a prompt template based on the lesson type
             if lesson_type == "Instructions based lesson":
                 prompt_template = get_prompt.load_prompt(content=lesson_content)
             else:
                 prompt_template = get_prompt.load_prompt_with_questions(content=lesson_content)
 
-            # Run a chain of the prompt and the language model
             chain = LLMChain(prompt=prompt_template, llm=model)
             response = chain(
                 {"input": prompt, "chat_history": st.session_state.messages[-20:]},
@@ -81,7 +78,6 @@ def run_langchain_model(prompt, lesson_type, lesson_content, lesson_selection, o
             st.session_state.messages.append(AIMessage(content=response[chain.output_key]))
 
     except Exception as e:
-        # Handle any errors that occur during the execution of the code
         st.error(f"An error occurred: {e}")
 
 
@@ -114,7 +110,7 @@ def download_chat():
 
     """
 
-    messages = st.session_state.get("messages", [])  # Retrieve messages from session state
+    messages = st.session_state.get("messages", [])  
 
     chat_content = "<html><head><link rel='stylesheet' type='text/css' href='styles.css'></head><body>"
     for msg in messages:
@@ -130,7 +126,6 @@ def download_chat():
     with open("chat.html", "w", encoding="utf-8") as html_file:
         html_file.write(chat_content)
 
-    # Download the generated HTML file
     st.download_button("Download Chat", open("chat.html", "rb"), key="download_chat", file_name="chat.html",
                        mime="text/html")
 
@@ -210,8 +205,6 @@ def avanzamento_barra(connection):
     nel sidebar in base al numero di messaggi di risposta corretta.
 
     """
-
-    # inizializzazione variabili
     bar = st.progress(0)
     bar.empty()
     contatore = 0

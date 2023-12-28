@@ -17,7 +17,7 @@ def handle_messages():
 
     """
 
-    # Initialize session state
+    
     if "messages" not in st.session_state:
         st.session_state.messages = []
     for msg in st.session_state["messages"]:

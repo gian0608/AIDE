@@ -1,4 +1,4 @@
-from langchain.schema import AIMessage
+from langchain_core.messages import AIMessage
 import Authentication as aut
 import Lezioni as lz
 import streamlit as st

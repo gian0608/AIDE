@@ -7,18 +7,14 @@ import mysql.connector
 import openai
 from mysql.connector import Error
 
-# Credenziali
 credentials = {'usernames': {'user1': 'pass123'}}
 
-# Genera chiave random
 key = secrets.token_urlsafe(16)
 
-# Inizializza login manager
 login_manager = stauth.Authenticate(credentials,
                                     cookie_name='auth',
                                     key=key)
 
-# Variabile globale password validata
 validated_password = ""
 
 
@@ -64,7 +60,7 @@ def is_api_key_valid(key):
     try:
         openai.api_key = key
         response = openai.Completion.create(
-            engine="davinci",  # https://platform.openai.com/docs/models
+            engine="davinci", 
             prompt="This is a test.",
             max_tokens=5
         )
@@ -80,7 +76,6 @@ def aggiungi_utente_al_database(username, password, email, api_key, connection):
         try:
             cursor = connection.cursor()
 
-            # Aggiungi l'utente al database
             salt = bcrypt.gensalt()
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
             cursor = connection.cursor()
@@ -105,10 +100,8 @@ def verifica_credenziali(username, password, connection):
 
             cursor.execute(query, values)
 
-            # Estrai i risultati
             result = cursor.fetchall()
 
-            # Mostra il risultato
             if result:
                 return 1
             else:

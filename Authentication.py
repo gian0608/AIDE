@@ -7,19 +7,24 @@ import mysql.connector
 import openai
 from mysql.connector import Error
 
+# Credenziali
 credentials = {'usernames': {'user1': 'pass123'}}
 
+# Genera chiave random
 key = secrets.token_urlsafe(16)
 
+# Inizializza login manager
 login_manager = stauth.Authenticate(credentials,
                                     cookie_name='auth',
                                     key=key)
 
+# Variabile globale password validata
 validated_password = ""
 
 
 def connetti_database():
     try:
+        # Recupera le informazioni di connessione dal file secrets
         return mysql.connector.connect(**st.secrets["mysql"])
     except Exception as e:
         st.error(f"Errore di connessione al database: {e}")
@@ -36,14 +41,17 @@ def validate_password(password):
 
     if len(password) > 0:
 
+        # Controllo lunghezza
         if len(password) < 8:
             st.error("Password troppo corta")
             return
 
+        # Controllo maiuscolo
         if not any(char.isupper() for char in password):
             st.error("Inserisci almeno 1 maiuscola")
             return
 
+            # Controllo carattere speciale
         if not re.search(r'[!@#$]', password):
             st.error("Inserisci almeno 1 carattere speciale")
             return
@@ -56,7 +64,7 @@ def is_api_key_valid(key):
     try:
         openai.api_key = key
         response = openai.Completion.create(
-            engine="davinci", 
+            engine="davinci",  # https://platform.openai.com/docs/models
             prompt="This is a test.",
             max_tokens=5
         )
@@ -72,6 +80,7 @@ def aggiungi_utente_al_database(username, password, email, api_key, connection):
         try:
             cursor = connection.cursor()
 
+            # Aggiungi l'utente al database
             salt = bcrypt.gensalt()
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), salt)
             cursor = connection.cursor()
@@ -91,13 +100,15 @@ def verifica_credenziali(username, password, connection):
         try:
             cursor = connection.cursor()
 
-            query = "SELECT * FROM utenti WHERE username = %s AND password = %s"
+            query = "SELECT * FROM Utenti WHERE Username = %s AND Password = %s"
             values = (username, password)
 
             cursor.execute(query, values)
 
+            # Estrai i risultati
             result = cursor.fetchall()
 
+            # Mostra il risultato
             if result:
                 return 1
             else:

@@ -17,7 +17,7 @@ def handle_messages():
 
     """
 
-    
+    # Initialize session state
     if "messages" not in st.session_state:
         st.session_state.messages = []
     for msg in st.session_state["messages"]:
@@ -58,16 +58,19 @@ def run_langchain_model(prompt, lesson_type, lesson_content, lesson_selection, o
 
     try:
 
+        # Set up a streaming handler for the model
         with st.chat_message("assistant"):
             stream_handler = StreamHandler(st.empty())
             model = ChatOpenAI(streaming=True, callbacks=[stream_handler], model="gpt-3.5-turbo-16k",
                                openai_api_key=openai_api_key)
 
+            # Load a prompt template based on the lesson type
             if lesson_type == "Instructions based lesson":
                 prompt_template = get_prompt.load_prompt(content=lesson_content)
             else:
                 prompt_template = get_prompt.load_prompt_with_questions(content=lesson_content)
 
+            # Run a chain of the prompt and the language model
             chain = LLMChain(prompt=prompt_template, llm=model)
             response = chain(
                 {"input": prompt, "chat_history": st.session_state.messages[-20:]},
@@ -78,6 +81,7 @@ def run_langchain_model(prompt, lesson_type, lesson_content, lesson_selection, o
             st.session_state.messages.append(AIMessage(content=response[chain.output_key]))
 
     except Exception as e:
+        # Handle any errors that occur during the execution of the code
         st.error(f"An error occurred: {e}")
 
 
@@ -110,7 +114,7 @@ def download_chat():
 
     """
 
-    messages = st.session_state.get("messages", [])  
+    messages = st.session_state.get("messages", [])  # Retrieve messages from session state
 
     chat_content = "<html><head><link rel='stylesheet' type='text/css' href='styles.css'></head><body>"
     for msg in messages:
@@ -126,6 +130,7 @@ def download_chat():
     with open("chat.html", "w", encoding="utf-8") as html_file:
         html_file.write(chat_content)
 
+    # Download the generated HTML file
     st.download_button("Download Chat", open("chat.html", "rb"), key="download_chat", file_name="chat.html",
                        mime="text/html")
 
@@ -194,7 +199,7 @@ def setup_page():
 
     """
 
-    st.set_page_config(page_title="AIDE", page_icon="🤖")
+    # st.set_page_config(page_title="AIDE", page_icon="🤖")
     st.title("AIDE: Studiare non è mai stato così facile! Aide è qui per guidarti!")
 
 
@@ -205,14 +210,18 @@ def avanzamento_barra(connection):
     nel sidebar in base al numero di messaggi di risposta corretta.
 
     """
+
+    # inizializzazione variabili
     bar = st.progress(0)
     bar.empty()
     contatore = 0
 
     cursor = connection.cursor()
-    query = "SELECT COUNT(*) FROM Lezioni"
+    query = ("SELECT COUNT(*) FROM Lezioni l JOIN utenti_lezioni ul ON l.id = ul.id_lezione "
+             "WHERE ul.username_utente = %s")
+    values = (st.session_state.username,)
 
-    cursor.execute(query)
+    cursor.execute(query, values)
     result = cursor.fetchall()
 
     messages = st.session_state.get("messages", [])

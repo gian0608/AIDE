@@ -7,7 +7,7 @@ connection = aut.connetti_database()
 
 
 def autenticazione(connection):
-    st.session_state.username=None
+    st.session_state.username = None
     lz.reset_lesson()
     st.title('Autenticazione')
 
@@ -46,7 +46,6 @@ def autenticazione(connection):
 
 
 def lezioni(connection):
-
     st.title('Lezioni')
     lz.setup_page()
 
@@ -54,11 +53,12 @@ def lezioni(connection):
     if st.sidebar.button("Logout"):
         st.session_state.pagina_corrente = 'Autenticazione'
 
-    lesson_selection = st.sidebar.selectbox("Seleziona Lezione", list(lz.get_prompt.get_lesson_guide(connection).keys()))
+    lesson_selection = st.sidebar.selectbox("Seleziona Lezione",
+                                            list(lz.get_prompt.get_lesson_guide(connection).keys()))
 
     cursor = connection.cursor()
 
-    query = "SELECT API_key FROM utenti WHERE username = %s"
+    query = "SELECT API_key FROM Utenti WHERE Username = %s"
     values = (st.session_state.username,)
 
     cursor.execute(query, values)
@@ -79,12 +79,11 @@ def lezioni(connection):
         st.session_state["messages"] = [AIMessage(
             content="Benvenuto " + str(st.session_state.username) + "! Sono AiDe, il tuo assistente virtuale che ti "
                                                                     "guiderà nell'apprendimento"
-                    " dell'ingegneria del software. Scrivimi un messaggio non appena sei pronto per iniziare!"
+                                                                    " dell'ingegneria del software. Scrivimi un messaggio non appena sei pronto per iniziare!"
         )]
 
     lz.display_lesson(lesson_selection, lesson_info)
     lz.handle_messages()
-
 
     if prompt := st.chat_input():
         st.chat_message("user").write(prompt)
@@ -104,7 +103,6 @@ def lezioni(connection):
             container_centrale = st.empty()
 
 
-
 ###################################################################
 
 if 'pagina_corrente' not in st.session_state:
@@ -115,5 +113,3 @@ if st.session_state.get('pagina_corrente') == 'Autenticazione':
     autenticazione(connection)
 elif st.session_state.get('pagina_corrente') == 'Lezioni':
     lezioni(connection)
-
-

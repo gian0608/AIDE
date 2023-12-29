@@ -71,18 +71,18 @@ def get_lesson_guide(connection):
     cursor = connection.cursor()
 
     lesson_guides = {}
-    query = ("SELECT l.id_lezione, l.nome, l.descrizione, l.percorso_file 
-            FROM Lezioni l
-            JOIN utenti_lezioni ul ON l.id_lezione = ul.id_lezione
-            WHERE ul.username_utente = %s")
-    
+    query = ("SELECT l.id, l.nome, l.descrizione, l.percorso_file "
+             "FROM Lezioni l JOIN Utenti_Lezioni ul ON l.id = ul.id_lezione "
+             "WHERE ul.username_utente = %s")
     values = (streamlit.session_state.username,)
 
     try:
         cursor.execute(query, values)
 
+        # Estrai i risultati
         results = cursor.fetchall()
 
+        # Itera attraverso i risultati e aggiungi le informazioni a lesson_guides
         for result in results:
             id_lezione, nome_lezione, descrizione, percorso_file = result
             lesson_guides[nome_lezione] = {

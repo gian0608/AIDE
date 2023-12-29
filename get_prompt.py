@@ -71,7 +71,11 @@ def get_lesson_guide(connection):
     cursor = connection.cursor()
 
     lesson_guides = {}
-    query = "SELECT id, nome, descrizione, percorso_file FROM Lezioni where username= %s "
+    query = "SELECT l.id_lezione, l.nome, l.descrizione, l.percorso_file 
+            FROM Lezioni l
+            JOIN utenti_lezioni ul ON l.id_lezione = ul.id_lezione
+            WHERE ul.username_utente = %s"
+    
     values = (streamlit.session_state.username,)
 
     try:

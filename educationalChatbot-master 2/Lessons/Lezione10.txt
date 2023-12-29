@@ -1,0 +1,170 @@
+### BREAKDOWN OF TOPICS FOR SOFTWARE QUALITY
+
+The breakdown of topics for the Software Quality KA is presented below.
+
+#### 1. Software Quality Fundamentals
+
+Reaching agreement on what constitutes quality for all stakeholders and clearly communicating that agreement to software engineers require that the many aspects of quality be formally defined and discussed. A software engineer should understand quality concepts, characteristics, values, and their application to the software under development or maintenance. The important concept is that the software requirements define the required quality attributes of the software. Software requirements influence the measurement methods and acceptance criteria for assessing the degree to which the software and related documentation achieve the desired quality levels.
+
+##### 1.1 Software Engineering Culture and Ethics
+
+Software engineers are expected to share a commitment to software quality as part of their culture. A healthy software engineering culture includes many characteristics, including the understanding that tradeoffs among cost, schedule, and quality are a basic tenet of the engineering of any product. A strong software engineering ethic assumes that engineers accurately report information, conditions, and outcomes related to quality. Ethics also play a significant role in software quality, the culture, and the attitudes of software engineers. The IEEE Computer Society and the ACM have developed a code of ethics and professional practice.
+
+##### 1.2 Value and Costs of Quality
+
+Defining and then achieving software quality is not simple. Quality characteristics may or may not be required, or they may be required to a greater or lesser degree, and tradeoffs may be made among them. This section presents the cost of software quality (CoSQ): a set of measurements derived from the economic assessment of software quality development and maintenance processes. The CoSQ measurements are examples of process measurements that may be used to infer characteristics of a product.
+
+##### 1.3 Models and Quality Characteristics
+
+Terminology for software quality characteristics differs from one taxonomy to another. Various authors have produced models of software quality characteristics or attributes that can be useful for discussing, planning, and rating the quality of software products. ISO/IEC 25010: 2011 defines product quality and quality in use as two related quality models.
+
+###### 1.3.1 Software Process Quality
+
+Software quality management and software engineering process quality have a direct bearing on the quality of the software product. Models and criteria that evaluate the capabilities of software organizations are primarily project organization and management considerations and are covered in the Software Engineering Management and Software Engineering Process KAs. The software engineering process influences the quality characteristics of software products, which in turn affect quality as perceived by stakeholders.
+
+###### 1.3.2 Software Product Quality
+
+The software engineer must determine the real purpose of the software, with stakeholder requirements being paramount. Software engineers have a responsibility to elicit quality requirements that may not be explicit at the outset and to understand their importance. All software development processes are designed with these quality requirements in mind and may carry additional development costs if attributes such as safety, security, and dependability are important.
+
+##### 1.4 Software Quality Improvement
+
+The quality of software products can be improved through preventative processes or an iterative process of continual improvement. Approaches such as the Deming improvement cycle of Plan-Do-Check-Act (PDCA), evolutionary delivery, kaizen, and quality function deployment (QFD) offer techniques to specify quality objectives and determine whether they are met.
+
+##### 1.5 Software Safety
+
+Safety-critical systems are those in which a system failure could harm human life, other living things, physical structures, or the environment. The software in these systems is safety-critical. There are industry standards, such as DO-178C, and emerging processes, tools, and techniques for developing safety-critical software.
+
+Safety-critical software can be categorized as direct or indirect. Direct is that software embedded in a safety-critical system, such as the flight control computer of an aircraft. Indirect includes software applications used to develop safety-critical software.
+
+Three complementary techniques for reducing the risk of failure are avoidance, detection and removal, and damage limitation. These techniques impact software functional requirements, software performance requirements, and development processes. Higher risk levels may necessitate more thorough inspections of requirements, design, and code or the use of more formal analytical techniques. Another technique for managing and controlling software risk is building assurance cases. An assurance case is a reasoned, auditable artifact created to support the contention that its claim or claims are satisfied. It contains the following and their relationships: one or more claims about properties; arguments that logically link the evidence and any assumptions to the claims; and a body of evidence and assumptions supporting these arguments.
+
+
+### 2. Software Quality Management Processes
+
+Software quality management is the collection of all processes that ensure that software products, services, and life cycle process implementations meet organizational software quality objectives and achieve stakeholder satisfaction.
+
+#### 2.1 Software Quality Assurance
+
+To quell a widespread misunderstanding, software quality assurance is not testing. Software quality assurance (SQA) is a set of activities that define and assess the adequacy of software processes to provide evidence that establishes confidence that the software processes are appropriate and produce software products of suitable quality for their intended purposes. A key attribute of SQA is the objectivity of the SQA function with respect to the project.
+
+##### 2.2 Verification & Validation
+
+The purpose of V&V is to help the development organization build quality into the system during the life cycle. V&V processes provide an objective assessment of products and processes throughout the life cycle. This assessment demonstrates whether the requirements are correct, complete, accurate, consistent, and testable.
+
+##### 2.3 Reviews and Audits
+
+Reviews and audit processes are broadly defined as static—meaning that no software programs or models are executed—examination of software engineering artifacts with respect to standards that have been established by the organization or project for those artifacts. Different types of reviews and audits are distinguished by their purpose, levels of independence, tools and techniques, roles, and by the subject of the activity.
+
+###### 2.3.1 Management Reviews
+
+The purpose of a management review is to monitor progress, determine the status of plans and schedules, and evaluate the effectiveness of management processes, tools and techniques. Management reviews compare actual project results against plans to determine the status of projects or maintenance efforts.
+
+###### 2.3.2 Technical Reviews
+
+The purpose of a technical review is to evaluate a software product by a team of qualified personnel to determine its suitability for its intended use and identify discrepancies from specifications and standards.
+
+###### 2.3.3 Inspections
+
+The purpose of an inspection is to detect and identify software product anomalies. Some important differentiators of inspections as compared to other types of technical reviews are these:
+
+1. Rules.
+2. Sampling.
+3. Peer.
+4. Led.
+5. Meeting.
+
+###### 2.3.4 Walkthroughs
+
+The purpose of a systematic walkthrough is to evaluate a software product. A walkthrough may be conducted for the purpose of educating an audience regarding a software product.
+
+###### 2.3.5 Process Assurance and Product Assurance Audits
+
+The purpose of a software audit is to provide an independent evaluation of the conformance of software products and processes to applicable regulations, standards, guidelines, plans, and procedures.
+
+While there may be many formal names for reviews and audits, such as those identified in the standard, the important point is that they can occur on almost any product at any stage of the development or maintenance process.
+
+### 3. Practical Considerations
+
+#### 3.1 Software Quality Requirements
+
+##### 3.1.1 Influence Factors
+
+Various factors influence planning, management, and selection of SQM activities and techniques, including:
+
+- The domain of the system
+- System functions (safety-critical, mission-critical, business-critical, security-critical)
+- Physical environment
+- System and software functional and quality requirements
+- Commercial or standard components
+- Software engineering standards
+- Methods and software tools
+- Budget, staff, project organization, plans, and scheduling
+- Intended users and use of the system
+- Integrity level of the system
+
+Information on these factors influences how the SQM processes are organized and documented, how specific SQM activities are selected, what resources are needed, and which of those resources impose bounds on the efforts.
+
+##### 3.1.2 Dependability
+
+In cases where system failure may have extremely severe consequences, overall dependability (hardware, software, and human or operational) is the main quality requirement over and above basic functionality. System and software dependability include characteristics such as availability, reliability, safety, and security. Verification, validation, and testing processes, techniques, methods, and tools identify faults that impact dependability as early as possible in the life cycle.
+
+##### 3.1.3 Integrity Levels of Software
+
+Defining integrity levels is a method of risk management. Software integrity levels represent software complexity, criticality, risk, safety level, security level, desired performance, reliability, or other project-unique characteristics. Integrity levels may change as the software evolves, and they result from agreements among the acquirer, supplier, developer, and independent assurance authorities.
+
+#### 3.2 Defect Characterization
+
+Software quality evaluation techniques find defects, faults, and failures. Defect characterization is used in audits, reviews, and understanding the product. A defect taxonomy is established to group specific types of problems, providing meaningful information to the organization and software engineers. Definitions include:
+
+- Computational Error
+- Error
+- Defect
+- Fault
+- Failure
+
+#### 3.3 Software Quality Management Techniques
+
+##### 3.3.1 Static Techniques
+
+Static techniques involve examining software documentation and source code without executing the code. Formal methods, such as formal verification, are used to verify software requirements and designs.
+
+##### 3.3.2 Dynamic Techniques
+
+Dynamic techniques involve executing the software code. Testing, simulation, and model analysis are examples. Code reading may involve dynamic techniques, creating a discrepancy in categorizing.
+
+###### 3.3.3 Testing
+
+Testing includes evaluation and tests of tools, conformance tests of components and COTS products, and evaluation of the testing process itself. Independent organizations may perform testing, and the third party is not associated with the development.
+
+#### 3.4 Software Quality Measurement
+
+Software quality measurements support decision-making. They go beyond whether the software works to how well it achieves measurable quality goals. Measurements include defect density, fault density, failure intensity, and reliability models. Descriptive statistics, statistical tests, trend analysis, and prediction techniques aid in interpreting measures.
+
+### 4. Software Quality Tools
+
+Software quality tools encompass both static and dynamic analysis tools. Static analysis tools operate on source code, performing syntactical and semantic analysis without code execution, presenting results to users. The depth, thoroughness, and scope of static analysis tools vary and can be applied to artifacts, including models and source code. Dynamic analysis tools are described in the Software Construction, Software Testing, and Software Maintenance KAs.
+
+Categories of static analysis tools include:
+
+1. **Tools for Reviews and Inspections:**
+   - Facilitate and partially automate reviews and inspections of documents and code.
+   - Route work to different participants to partially automate and control the review process.
+   - Allow users to enter defects found during inspections and reviews for later removal.
+
+2. **Software Safety Hazard Analysis Tools:**
+   - Assist organizations in performing software safety hazard analysis.
+   - Provide automated support for failure mode and effects analysis (FMEA) and fault tree analysis (FTA).
+
+3. **Problem Tracking Tools:**
+   - Support tracking of software problems.
+   - Allow entry of anomalies discovered during software testing.
+   - Provide analysis, disposition, and resolution functionalities.
+   - Include support for workflow and tracking the status of problem resolution.
+
+4. **Data Analysis Tools:**
+   - Analyze data captured from software engineering and test environments.
+   - Produce visual displays of quantified data through graphs, charts, and tables.
+   - Include functionality for statistical analysis on data sets to discern trends and make forecasts.
+   - Provide metrics such as defect and removal injection rates, defect densities, yields, and distribution of defect injection and removal for each life cycle phase.
+
+These tools contribute to enhancing the software development and maintenance process by automating aspects of analysis, reviews, inspections, safety analysis, and problem tracking, ultimately improving overall software quality.

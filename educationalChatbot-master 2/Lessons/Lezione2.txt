@@ -1,0 +1,343 @@
+### Acronyms
+
+- **ADL:** Architecture Description Language
+- **CBD:** Component-Based Design
+- **CRC:** Class Responsibility Collaborator
+- **DFD:** Data Flow Diagram
+- **ERD:** Entity Relationship Diagram
+- **IDL:** Interface Description Language
+- **MVC:** Model View Controller
+- **OO:** Object-Oriented
+- **PDL:** Program Design Language
+
+### Introduction
+
+Design in software engineering involves defining the architecture, components, interfaces, and other characteristics of a system or component. It is both a process and the result of that process. Software design, as a process, analyzes software requirements to produce a description of the software's internal structure, serving as the basis for construction. The result, the software design, describes the software architecture, how it is decomposed into components, and the interfaces between them. The design should provide sufficient detail for the construction of components.
+
+During software design, engineers create models that act as blueprints for the solution. These models are analyzed, evaluated, and used to fulfill requirements. Alternative solutions and tradeoffs can be explored, and the resulting models guide subsequent development activities like verification, validation, construction, and testing.
+
+In the software life cycle, software design includes two activities:
+
+1. **Software Architectural Design (High-Level Design):** Develops the top-level structure and organization of the software, identifying various components.
+2. **Software Detailed Design:** Specifies each component in detail to facilitate construction.
+
+This Software Design knowledge area focuses on D-design (decomposition design) and, due to its importance in software architecture, FP-design (family pattern design). It does not cover I-design (invention design), which is part of the requirements process (Software Requirements KA).
+
+The Software Design KA is related to Software Requirements, Software Construction, Software Engineering Management, Software Engineering Models and Methods, Software Quality, and Computing Foundations KAs.
+
+
+### 1 Software Design Fundamentals
+
+#### 1.1 General Design Concepts
+Design is a form of problem-solving, and understanding concepts like wicked problems, goals, constraints, alternatives, representations, and solutions is crucial. 
+
+#### 1.2 Context of Software Design
+Software design is a vital part of the software development process. Understanding its role involves considering how it fits into the software development life cycle, including software requirements analysis, software construction, software testing, and software maintenance.
+
+#### 1.3 Software Design Process
+Software design is generally a two-step process: 
+1. **Architectural Design:** Describes how software is organized into components.
+2. **Detailed Design:** Describes the desired behavior of these components. 
+The output includes models and artifacts that document major decisions and their rationale, enhancing long-term maintainability.
+
+#### 1.4 Software Design Principles
+Software design principles are fundamental laws guiding design approaches. Key principles include:
+- **Abstraction:** Focusing on relevant information for a purpose.
+- **Coupling and Cohesion:** Measuring interdependence among modules and the strength of association within a module.
+- **Decomposition and Modularization:** Dividing large software into smaller, well-defined components.
+- **Encapsulation/Information Hiding:** Grouping internal details, making them inaccessible externally.
+- **Separation of Interface and Implementation:** Defining a public interface separate from internal details.
+- **Sufficiency, Completeness, and Primitiveness:** Ensuring components capture essential characteristics without unnecessary details.
+- **Separation of Concerns:** Managing complexity by separating design concerns into views.
+
+
+### 2 Key Issues in Software Design
+
+Several critical issues must be addressed in software design, including quality concerns like performance, security, reliability, and usability. Additionally, the decomposition, organization, and packaging of software components are fundamental considerations in various design approaches. The following sections discuss key crosscutting issues in alphabetical order:
+
+#### 2.1 Concurrency
+Design for concurrency involves decomposing software into processes, tasks, and threads, addressing efficiency, atomicity, synchronization, and scheduling.
+
+#### 2.2 Control and Handling of Events
+This design issue focuses on organizing data and control flow, handling reactive and temporal events through mechanisms such as implicit invocation and callbacks.
+
+#### 2.3 Data Persistence
+Concerned with handling long-lived data, this design issue addresses strategies for managing data persistence.
+
+#### 2.4 Distribution of Components
+Addressing how software is distributed across hardware, including computer and network hardware, this issue involves communication between components and the use of middleware for heterogeneous software.
+
+#### 2.5 Error and Exception Handling and Fault Tolerance
+This design issue tackles how to prevent, tolerate, and process errors, along with dealing with exceptional conditions.
+
+#### 2.6 Interaction and Presentation
+Focusing on structuring user interactions and presenting information, this issue includes considerations like the separation of presentation and business logic using the Model-View-Controller approach.
+
+#### 2.7 Security
+Design for security involves preventing unauthorized access, disclosure, creation, change, and deletion of information and resources. It also addresses tolerance of security-related attacks, ensuring limited damage, continuous service, rapid repair and recovery, and secure failure and recovery. Access control and the proper use of cryptography are fundamental concepts in security design.
+
+### 3 Software Structure and Architecture
+
+In its strict sense, software architecture is defined as "the set of structures needed to reason about the system, comprising software elements, relations among them, and properties of both." However, as a discipline, software architecture has evolved to encompass broader concepts, exploring software structures and architectures in a more generic manner. This expansion has given rise to design concepts applicable to architectural design, detailed design, and the creation of software families or product lines.
+
+#### 3.1 Architectural Structures and Viewpoints
+Different facets of software design can be described through views, representing partial aspects of a software architecture. These views address specific issues such as logical, process, physical, and development aspects. A software design comprises independent and orthogonal views, providing a multifaceted artifact.
+
+#### 3.2 Architectural Styles
+Architectural styles are specializations of element and relation types with constraints on their usage. They define the high-level organization of software and include various styles like general structures (e.g., layers, pipes and filters), distributed systems (e.g., client-server, three-tiers), interactive systems (e.g., Model-View-Controller), adaptable systems (e.g., microkernel), and others (e.g., batch, interpreters).
+
+#### 3.3 Design Patterns
+Design patterns are common solutions to recurring problems in a given context. While architectural styles describe high-level organization, design patterns address lower-level details. Categories include creational patterns (e.g., builder, factory), structural patterns (e.g., adapter, decorator), and behavioral patterns (e.g., observer, strategy).
+
+#### 3.4 Architecture Design Decisions
+Architectural design involves fundamental decisions impacting the software and development process. These decisions, made during a creative process, often consider quality attributes and tradeoffs among them.
+
+#### 3.5 Families of Programs and Frameworks
+Designing families of programs, or software product lines, involves identifying commonalities and creating reusable components to accommodate variability. In object-oriented programming, frameworks, partially completed systems, can be extended by instantiating specific extensions like plug-ins.
+
+
+### 4 User Interface Design
+
+User interface design is a critical aspect of the software design process, ensuring effective interaction between users and machines. The design should align with users' skills, experience, and expectations to unlock the full potential of the software.
+
+#### 4.1 General User Interface Design Principles
+1. **Learnability:** Ensure the software is easy to learn, allowing users to quickly start working with it.
+2. **User familiarity:** Use terms and concepts familiar to the software's users.
+3. **Consistency:** Maintain consistent operations for comparable tasks.
+4. **Minimal surprise:** Avoid surprising users with unexpected software behavior.
+5. **Recoverability:** Provide mechanisms for users to recover from errors.
+6. **User guidance:** Offer meaningful feedback for errors and context-related help.
+7. **User diversity:** Accommodate various user types and capabilities (e.g., blind, poor eyesight).
+
+#### 4.2 User Interface Design Issues
+Address two primary issues:
+- How users should interact with the software.
+- How information from the software should be presented to users.
+Integrate user interaction and information presentation, considering appropriate styles based on user backgrounds, experiences, and available devices.
+
+#### 4.3 The Design of User Interaction Modalities
+User interaction styles:
+- Question-answer
+- Direct manipulation
+- Menu selection
+- Form fill-in
+- Command language
+- Natural language
+
+#### 4.4 The Design of Information Presentation
+Considerations for information presentation:
+- Textual or graphical nature
+- MVC (Model-View-Controller) approach
+- Response time and feedback
+- Use of colors with guidelines for effective usage
+
+#### 4.5 User Interface Design Process
+An iterative process involving:
+1. **User analysis:** Analyze users' tasks, working environment, interactions, and experiences.
+2. **Software prototyping:** Develop prototypes to guide interface evolution.
+3. **Interface evaluation:** Observe users' experiences with the evolving interface.
+
+#### 4.6 Localization and Internationalization
+Consider internationalization and localization for adapting software to different languages, regions, and technical requirements.
+
+#### 4.7 Metaphors and Conceptual Models
+Use metaphors and conceptual models to establish mappings between software and real-world systems known to users. Exercise caution with the use of metaphors, considering potential issues with internationalization.
+
+
+### 5 Software Design Quality Analysis and Evaluation
+
+This section focuses on quality analysis and evaluation aspects related to software design. Quality attributes, analysis techniques, and measures contribute to understanding and improving the overall quality of a software design.
+
+#### 5.1 Quality Attributes
+Quality attributes include various "-ilities" (e.g., maintainability, portability, testability, usability) and "-nesses" (e.g., correctness, robustness). They contribute to both discernible and non-discernible aspects of software design, encompassing runtime and intrinsic architectural qualities.
+
+#### 5.2 Quality Analysis and Evaluation Techniques
+1. **Software Design Reviews:**
+   - Informal and formalized techniques to assess design artifacts.
+   - Examples: architecture reviews, design reviews, inspections, scenario-based techniques, requirements tracing.
+
+2. **Static Analysis:**
+   - Formal or semiformal nonexecutable analysis to evaluate design.
+   - Examples: fault-tree analysis, automated cross-checking, design vulnerability analysis (for security weaknesses), formal design analysis.
+
+3. **Simulation and Prototyping:**
+   - Dynamic techniques for evaluating design.
+   - Examples: performance simulation, feasibility prototypes.
+
+#### 5.3 Measures
+Measures aid in assessing or quantitatively estimating various aspects of a software design. They fall into two broad categories:
+1. **Function-based (Structured) Design Measures:**
+   - Obtained by analyzing functional decomposition.
+   - Represented using a structure chart for computing various measures.
+
+2. **Object-Oriented Design Measures:**
+   - Design structure represented as a class diagram.
+   - Measures computed on properties of the internal content of each class.
+
+### 6 Software Design Notations
+
+Software design notations are diverse and serve different purposes during architectural and detailed design. They are categorized into structural (static view) and behavioral (dynamic view) descriptions.
+
+#### 6.1 Structural Descriptions (Static View)
+1. **Architecture Description Languages (ADLs):**
+   - Textual, formal languages describing software architecture in terms of components and connectors.
+
+2. **Class and Object Diagrams:**
+   - Represent sets of classes and objects with their interrelationships.
+
+3. **Component Diagrams:**
+   - Represent sets of components and their interrelationships.
+
+4. **Entity-Relationship Diagrams (ERDs):**
+   - Represent conceptual models of data stored in information repositories.
+
+#### 6.2 Behavioral Descriptions (Dynamic View)
+1. **Activity Diagrams:**
+   - Show control flow from activity to activity and represent concurrent activities.
+
+2. **Communication Diagrams:**
+   - Show interactions among objects, emphasizing objects, links, and exchanged messages.
+
+3. **Data Flow Diagrams (DFDs):**
+   - Depict data flow among elements, used for security analysis.
+
+4. **Sequence Diagrams:**
+   - Display interactions among objects, focusing on the time ordering of messages.
+
+5. **State Transition and State Chart Diagrams:**
+   - Show control flow between states and how behavior changes based on the current state.
+
+6. **Formal Specification Languages:**
+   - Textual languages using mathematical notions to rigorously define software component interfaces and behavior.
+
+7. **Pseudo Code and Program Design Languages (PDLs):**
+   - Structured programming-like languages describing detailed design behavior.
+
+### 7 Software Design Strategies and Methods
+
+Software design encompasses various strategies and methods to guide the design process. General strategies provide overarching principles, while specific methods offer a set of notations, processes, and guidelines for a more detailed and systematic approach.
+
+#### 7.1 General Strategies
+
+1. **Divide and Conquer:**
+   - Break down complex problems into smaller, more manageable sub-problems.
+  
+2. **Stepwise Refinement:**
+   - Systematically elaborate and refine system details in a step-by-step manner.
+
+3. **Top-Down vs. Bottom-Up:**
+   - **Top-Down:** Start with a high-level view and progressively refine it.
+   - **Bottom-Up:** Begin with detailed components and gradually aggregate them.
+
+4. **Heuristics:**
+   - Use rules of thumb or guiding principles based on experience.
+
+5. **Use of Patterns and Pattern Languages:**
+   - Apply design patterns, recurring solutions to common problems.
+
+6. **Iterative and Incremental Approach:**
+   - Develop software through repetitive cycles, refining and adding features incrementally.
+
+#### 7.2 Function-Oriented (Structured) Design
+
+- **Approach:**
+  - Identify major software functions.
+  - Elaborate and refine functions in a hierarchical top-down manner.
+- **Related Techniques:**
+  - Transformation analysis, transaction analysis.
+  - Fan-in/fan-out, scope of effect vs. scope of control.
+
+#### 7.3 Object-Oriented Design
+
+- **Evolution:**
+  - From early noun-verb-adjective structure to component-based design.
+  - Emphasis on inheritance, polymorphism, and responsibility-driven design.
+
+#### 7.4 Data Structure-Centered Design
+
+- **Approach:**
+  - Start with data structures a program manipulates.
+  - Develop program control structure based on data structure diagrams.
+- **Heuristics:**
+  - Address special cases, such as mismatches between input and output structures.
+
+#### 7.5 Component-Based Design (CBD)
+
+- **Definition:**
+  - Software components as independent units with well-defined interfaces.
+  - Compose and deploy components independently to improve reuse.
+- **Considerations:**
+  - Trust management for component trustworthiness.
+  - Address security requirements for reused and off-the-shelf components.
+
+#### 7.6 Other Methods
+
+1. **Iterative and Adaptive Methods:**
+   - Implement software increments.
+   - Reduce emphasis on rigorous software requirements and design.
+
+2. **Aspect-Oriented Design:**
+   - Construct software using aspects to address crosscutting concerns.
+   - Identify extensions during the software requirements process.
+
+3. **Service-Oriented Architecture (SOA):**
+   - Build distributed software using web services.
+   - Leverage standard protocols (e.g., HTTP, HTTPS, SOAP) for service communication.
+
+### 8 Software Design Tools
+
+Software design tools play a crucial role in facilitating the creation of software design artifacts throughout the software development process. These tools contribute to various activities, aiding in the translation of requirements models into design representations, representing functional components and their interfaces, supporting heuristics refinement and partitioning, and providing guidelines for quality assessment.
+
+#### Common Software Design Tools:
+
+1. **Modeling Tools:**
+   - **Purpose:** Translate requirements models into design representations.
+   - **Examples:** Unified Modeling Language (UML) tools, visual modeling tools.
+   - **Features:** Graphical representation of software components, relationships, and behaviors.
+
+2. **Integrated Development Environments (IDEs):**
+   - **Purpose:** Provide comprehensive support for software development, including design.
+   - **Examples:** Eclipse, Visual Studio, IntelliJ IDEA.
+   - **Features:** Code editors, debuggers, build tools, and design assistance.
+
+3. **CASE (Computer-Aided Software Engineering) Tools:**
+   - **Purpose:** Support the entire software development lifecycle, including design.
+   - **Examples:** Rational Rose, Enterprise Architect, MagicDraw.
+   - **Features:** Requirements management, design modeling, code generation.
+
+4. **Refactoring Tools:**
+   - **Purpose:** Assist in heuristics refinement and code restructuring.
+   - **Examples:** ReSharper, JArchitect.
+   - **Features:** Automated code analysis, suggestion and execution of refactorings.
+
+5. **Code Generation Tools:**
+   - **Purpose:** Generate code based on design models.
+   - **Examples:** MDA (Model-Driven Architecture) tools, Hibernate tools.
+   - **Features:** Automatic generation of code from high-level design specifications.
+
+6. **Quality Assessment Tools:**
+   - **Purpose:** Provide guidelines for assessing the quality of the software design.
+   - **Examples:** SonarQube, CAST, ESLint.
+   - **Features:** Static code analysis, code quality metrics, security scanning.
+
+7. **Collaboration and Communication Tools:**
+   - **Purpose:** Facilitate communication and collaboration among team members during design.
+   - **Examples:** Confluence, Slack, Microsoft Teams.
+   - **Features:** Document sharing, real-time collaboration, communication channels.
+
+8. **Version Control Systems:**
+   - **Purpose:** Manage changes to the software design over time.
+   - **Examples:** Git, SVN (Subversion), Mercurial.
+   - **Features:** Version tracking, branching, merging.
+
+9. **Testing Tools:**
+   - **Purpose:** Support the design and execution of software tests.
+   - **Examples:** JUnit, Selenium, TestNG.
+   - **Features:** Test case creation, execution, and results analysis.
+
+10. **Documentation Tools:**
+    - **Purpose:** Assist in creating and managing design documentation.
+    - **Examples:** Markdown editors, LaTeX, Microsoft Word.
+    - **Features:** Document formatting, collaboration on documentation.
+
+These tools collectively contribute to a more efficient and effective software design process, helping software engineers manage complexity, ensure quality, and streamline collaboration. The choice of tools often depends on the specific needs and preferences of the development team.

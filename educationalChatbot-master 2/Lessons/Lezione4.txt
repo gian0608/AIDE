@@ -1,0 +1,394 @@
+﻿### Chapter 4: Software Testing Overview
+
+#### ACRONYMS
+- API: Application Program Interface
+- TDD: Test-Driven Development
+- TTCN3: Testing and Test Control Notation Version 3
+- XP: Extreme Programming
+
+#### INTRODUCTION
+Software testing is the dynamic verification process that assesses whether a program exhibits expected behaviors on a finite set of test cases, carefully selected from the usually infinite execution domain. Several key terms are crucial in understanding the Software Testing knowledge area (KA):
+
+**Dynamic:** Testing involves executing the program on specific inputs. While the input alone might not be sufficient due to system complexity, the term "input" is maintained with the understanding that it includes specified input states when relevant. This KA complements dynamic testing with static techniques covered in the Software Quality KA.
+
+**Finite:** Given the vast number of theoretically possible test cases, exhaustive testing is impractical. Testing is conducted on a subset, influenced by risk and prioritization criteria, reflecting the inherent tradeoff between limited resources and unlimited test requirements.
+
+**Selected:** Test techniques differ in how the test set is chosen. Different selection criteria can significantly impact effectiveness. Identifying the most suitable criterion involves complex considerations, often addressed through risk analysis and software engineering expertise.
+
+**Expected:** The outcomes of program testing must be assessable to determine acceptability. This assessment may involve checking against user needs (validation), specifications (verification), or anticipated behavior based on implicit requirements or expectations.
+
+In recent years, the perspective on software testing has evolved into a more constructive one. It is now seen as a pervasive activity throughout the development and maintenance life cycle, starting early in the requirements process. Test planning and design activities contribute valuable insights to software designers, highlighting potential weaknesses in design or documentation.
+
+For many organizations, software quality is approached preventively. Testing serves as a means to provide information about software functionality and quality attributes, identifying faults when preventive measures fall short. It's essential to recognize that, even after extensive testing, software may still contain faults, leading to corrective maintenance post-delivery.
+
+The Software Quality KA categorizes software quality management techniques into static (no code execution) and dynamic (code execution). This chapter focuses on dynamic techniques, emphasizing the relationship between software testing and software construction, particularly unit and integration testing.
+
+### Chapter 4: Software Testing - Breakdown of Topics
+
+#### Figure 4.1: Software Testing Knowledge Area Breakdown
+![Software Testing KA Breakdown](http://swebokwiki.org/File:Software-testing.jpg)
+
+#### Detailed Breakdown of Topics:
+
+#### 1. Software Testing Fundamentals
+##### 1.1 Testing-Related Terminology
+- 1.1.1 Definitions of Testing and Related Terminology
+- 1.1.2 Faults vs. Failures
+
+##### 1.2 Key Issues
+- 1.2.1 Test Selection Criteria / Test Adequacy Criteria (Stopping Rules)
+- 1.2.2 Test Effectiveness / Objectives for Testing
+- 1.2.3 Testing for Defect Discovery
+- 1.2.4 The Oracle Problem
+- 1.2.5 Theoretical and Practical Limitations of Testing
+- 1.2.6 The Problem of Infeasible Paths
+- 1.2.7 Testability
+
+##### 1.3 Relationship of Testing to Other Activities
+- Software testing compared to static software quality management techniques, correctness proofs, formal verification, debugging, and program construction.
+
+#### 2. Test Levels
+- Two orthogonal subtopics:
+  - Traditional subdivision of testing levels for large software.
+  - Testing for specific conditions or properties (Objectives of Testing).
+
+#### 3. Test Techniques
+- Overview of generally accepted test techniques developed over the past decades.
+
+#### 4. Test-Related Measures
+- Exploration of measures associated with software testing.
+
+#### 5. Test Process
+- Discussion of issues relevant to the test process in software testing.
+
+#### 6. Software Testing Tools
+- Presentation of tools utilized in software testing.
+
+#### Matrix of Topics vs. Reference Material
+(Refer to the detailed matrix at the end of the Knowledge Area for a comprehensive view.)
+
+**Note:** The breakdown provides a structured approach to understanding and navigating the Software Testing Knowledge Area, covering fundamental concepts, key issues, relationships with other activities, test levels, techniques, measures, the test process, and testing tools.
+
+### 2 Test Levels
+
+Software testing involves various levels throughout the development and maintenance processes, each focusing on different aspects. These levels are distinguished based on the target and objectives of the tests.
+
+#### 2.1 The Target of the Test
+
+**2.1.1 Unit Testing**
+- Verifies isolated software elements (modules, subprograms, or larger components).
+- Typically performed by programmers with access to the code, using debugging tools.
+
+**2.1.2 Integration Testing**
+- Verifies interactions among software components.
+- Strategies include top-down, bottom-up, and architecture-driven approaches.
+- Incremental integration testing is preferred for larger software.
+
+**2.1.3 System Testing**
+- Focuses on testing the behavior of the entire system.
+- Evaluates nonfunctional system requirements like security, speed, accuracy, and reliability.
+- Assesses external interfaces and operational environments.
+
+#### 2.2 Objectives of Testing
+
+Testing is conducted with specific objectives, which may vary based on the test target. Some commonly cited objectives include:
+
+**2.2.1 Acceptance / Qualification Testing**
+- Determines if the system satisfies acceptance criteria.
+- Involves customers or their representatives to check requirements.
+
+**2.2.2 Installation Testing**
+- Verifies software upon installation in the target environment.
+- Includes system testing in operational conditions.
+
+**2.2.3 Alpha and Beta Testing**
+- Trial use by a small group (alpha) or a larger set of representative users (beta).
+- Users report problems with the product.
+
+**2.2.4 Reliability Achievement and Evaluation**
+- Identifies and corrects faults to improve reliability.
+- Statistical measures derived through operational testing.
+
+**2.2.5 Regression Testing**
+- Selective retesting to verify that modifications have not caused unintended effects.
+- Ensures software behavior is unchanged by incremental changes.
+
+**2.2.6 Performance Testing**
+- Verifies software meets specified performance requirements.
+- Assesses performance characteristics like capacity and response time.
+
+**2.2.7 Security Testing**
+- Focuses on verifying protection against external attacks.
+- Checks confidentiality, integrity, and availability of systems and data.
+
+**2.2.8 Stress Testing**
+- Exercises software at maximum design load and beyond to determine behavioral limits.
+- Tests defense mechanisms in critical systems.
+
+**2.2.9 Back-to-Back Testing**
+- Compares outputs of two or more program variants with the same inputs.
+
+**2.2.10 Recovery Testing**
+- Verifies software restart capabilities after a system crash or disaster.
+
+**2.2.11 Interface Testing**
+- Verifies correct interface between components to ensure the proper exchange of data.
+- Simulates the use of APIs by end-user applications.
+
+**2.2.12 Configuration Testing**
+- Verifies software under different specified configurations.
+
+**2.2.13 Usability and Human Computer Interaction Testing**
+- Evaluates how easy it is for end users to learn and use the software.
+- Involves testing software functions supporting user tasks, documentation, and error recovery.
+
+*Note: The objectives of testing may vary with the test target, addressing different purposes at different levels of testing.*
+
+### 3 Test Techniques
+
+Software testing aims to detect failures through various techniques that systematically identify inputs leading to representative program behaviors. The classification of testing techniques is based on how tests are generated, utilizing software engineers' intuition and experience, specifications, code structure, fault models, and other factors.
+
+#### 3.1 Based on the Software Engineer's Intuition and Experience
+
+**3.1.1 Ad Hoc**
+- Widely practiced, relying on the engineer's skill and experience.
+- Useful for identifying test cases not easily generated by formalized techniques.
+
+**3.1.2 Exploratory Testing**
+- Involves simultaneous learning, test design, and execution without a predefined test plan.
+- Effectiveness relies on the engineer's knowledge from various sources.
+
+#### 3.2 Input Domain-Based Techniques
+
+**3.2.1 Equivalence Partitioning**
+- Involves partitioning the input domain into subsets based on specified criteria.
+- Representative tests are taken from each equivalence class.
+
+**3.2.2 Pairwise Testing**
+- Derives test cases by combining interesting values for pairs of input variables.
+- Belongs to combinatorial testing, considering t-wise combinations.
+
+**3.2.3 Boundary-Value Analysis**
+- Chooses test cases on or near the boundaries of input variable domains.
+- Focuses on extreme values to uncover potential faults.
+
+**3.2.4 Random Testing**
+- Generates tests purely at random, used for test automation.
+- Fuzz testing, a form of random testing, is often employed for security testing.
+
+#### 3.3 Code-Based Techniques
+
+**3.3.1 Control Flow-Based Criteria**
+- Aimed at covering statements, blocks, or specified combinations in a program.
+- Includes path testing, statement coverage, branch coverage, and condition/decision testing.
+
+**3.3.2 Data Flow-Based Criteria**
+- Annotates the control flow graph with information on variable definition, use, and kill.
+- Includes all definition-use paths, all-definitions, and all-uses strategies.
+
+**3.3.3 Reference Models for Code-Based Testing**
+- Uses flow graphs to visualize control structure for code-based testing techniques.
+
+#### 3.4 Fault-Based Techniques
+
+**3.4.1 Error Guessing**
+- Engineers design test cases anticipating plausible faults based on experience.
+
+**3.4.2 Mutation Testing**
+- Involves creating mutants (modified versions) of the program to identify differences.
+- Assesses the program's ability to detect syntactic faults.
+
+#### 3.5 Usage-Based Techniques
+
+**3.5.1 Operational Profile**
+- In testing for reliability evaluation, reproduces the operational environment to infer future reliability.
+- Assigns probabilities to inputs based on their frequency of occurrence.
+
+**3.5.2 User Observation Heuristics**
+- Uses usability principles for discovering UI design problems.
+- Includes cognitive walkthroughs, claims analysis, field observations, and other methods.
+
+#### 3.6 Model-Based Testing Techniques
+
+**3.6.1 Decision Tables**
+- Represents logical relationships between conditions and actions for systematic test case derivation.
+
+**3.6.2 Finite-State Machines**
+- Models a program as a finite state machine to select tests covering states and transitions.
+
+**3.6.3 Formal Specifications**
+- Uses formal language to represent specifications for automatic derivation of functional test cases.
+
+#### 3.7 Techniques Based on the Nature of the Application
+
+- Various techniques apply to specific types of software (e.g., object-oriented, web-based, real-time).
+
+#### 3.8 Selecting and Combining Techniques
+
+**3.8.1 Combining Functional and Structural**
+- Model-based and code-based techniques are complementary, not alternatives.
+- They use different sources of information and highlight different types of problems.
+
+**3.8.2 Deterministic vs. Random**
+- Test cases can be selected deterministically or randomly, depending on effectiveness conditions.
+
+*Note: The effectiveness of these techniques may vary based on the nature and requirements of the software.*
+
+### 4 Test-Related Measures
+
+Testing involves not only techniques but also measures to evaluate both the program under test and the tests performed. These measures help in understanding the effectiveness of testing and guiding improvements.
+
+#### 4.1 Evaluation of the Program Under Test
+
+**4.1.1 Program Measurements That Aid in Planning and Designing Tests**
+- Measures based on software size or structure guide testing.
+- Examples include source lines of code, functional size, and module interaction frequency.
+
+**4.1.2 Fault Types, Classification, and Statistics**
+- Understanding fault types and their frequency enhances testing effectiveness.
+- Taxonomies of faults assist in making quality predictions and process improvement.
+
+**4.1.3 Fault Density**
+- Evaluation by counting discovered faults as a ratio of faults found to program size.
+- Provides insights into the density of faults in the program under test.
+
+**4.1.4 Life Test, Reliability Evaluation**
+- Statistical estimate of software reliability based on observed failures.
+- Helps decide whether testing can be stopped and assesses product reliability.
+
+**4.1.5 Reliability Growth Models**
+- Predict reliability based on fixed faults, assuming increasing reliability after fixes.
+- Models include failure-count and time-between-failure models.
+
+#### 4.2 Evaluation of the Tests Performed
+
+**4.2.1 Coverage / Thoroughness Measures**
+- Monitor the elements covered in the program or specifications during test execution.
+- Measure the ratio of covered elements to the total number, e.g., percentage of branches covered.
+
+**4.2.2 Fault Seeding**
+- Artificially introduce faults into a program before testing to assess testing effectiveness.
+- Controversial technique with considerations about fault distribution and representativeness.
+
+**4.2.3 Mutation Score**
+- In mutation testing, the ratio of killed mutants to the total number of generated mutants.
+- A measure of the effectiveness of the executed test set in revealing faults.
+
+**4.2.4 Comparison and Relative Effectiveness of Different Techniques**
+- Studies comparing the effectiveness of different testing techniques.
+- Effectiveness can be measured by the number of tests needed to find the first failure, the ratio of faults found through testing, and improvements in reliability.
+
+*Note: These measures provide insights into the program's quality and the effectiveness of the testing process. Careful consideration and interpretation are necessary for meaningful assessments.*
+
+### 5 Test Process
+
+Testing is an integral part of software development, and a well-defined test process ensures effective testing activities. This process supports various testing phases, from planning to result evaluation, with the aim of meeting test objectives in a cost-effective manner.
+
+#### 5.1 Practical Considerations
+
+**5.1.1 Attitudes / Egoless Programming**
+- Collaborative attitude towards testing and quality assurance is crucial.
+- Managers play a key role in fostering a positive reception towards failure discovery and correction.
+
+**5.1.2 Test Guides**
+- Testing phases guided by aims, such as risk-based testing prioritizing product risks.
+- Scenario-based testing defines test cases based on specified software scenarios.
+
+**5.1.3 Test Process Management**
+- Organize test activities at different levels into a well-defined process.
+- Involves people, tools, policies, and measures and is integrated into the software life cycle.
+
+**5.1.4 Test Documentation and Work Products**
+- Test documentation includes plans, design specifications, procedures, and logs.
+- Documentation should be of high quality and under software configuration management.
+
+**5.1.5 Test-Driven Development**
+- Test-driven development (TDD) involves writing unit tests before writing the code.
+- Develops test cases as a surrogate for software requirements, fostering collaboration.
+
+**5.1.6 Internal vs. Independent Test Team**
+- Testing team organization considerations involve internal, external, or a mix of team members.
+- Decision factors include cost, schedule, organization maturity, and application criticality.
+
+**5.1.7 Cost/Effort Estimation and Test Process**
+- Various measures related to resources spent on testing are used for control and improvement.
+- Evaluation of test phase reports combined with root-cause analysis for effective fault finding.
+
+**5.1.8 Termination**
+- Decision-making on when testing is enough and when a test stage can be terminated.
+- Considerations include costs, risks, and remaining failures, not just thoroughness measures.
+
+**5.1.9 Test Reuse and Test Patterns**
+- Systematic reuse of test materials is essential for organized and cost-effective testing.
+- Test patterns document solutions adopted for testing specific application types.
+
+#### 5.2 Test Activities
+
+**5.2.1 Planning**
+- Key aspects include personnel coordination, test facilities, documentation, and undesirable outcome planning.
+- Considerations for maintaining multiple baselines of the software.
+
+**5.2.2 Test-Case Generation**
+- Generation based on testing level and techniques, under software configuration management.
+- Test cases should include expected results for each test.
+
+**5.2.3 Test Environment Development**
+- The testing environment should be compatible with other software engineering tools.
+- Facilitates test case development, logging, recovery, and use of testing materials.
+
+**5.2.4 Execution**
+- Testing should follow documented procedures, using a clearly defined software version.
+- Execution should be replicable by others to ensure scientific rigor.
+
+**5.2.5 Test Results Evaluation**
+- Evaluation of results to determine the success of testing.
+- Successful testing means the software performed as expected and had no major unexpected outcomes.
+
+**5.2.6 Problem Reporting / Test Log**
+- Logging of testing activities and identification information in a test log.
+- Unexpected or incorrect results recorded in a problem reporting system for analysis and debugging.
+
+**5.2.7 Defect Tracking**
+- Tracking and analyzing defects to determine their origin and causes.
+- Information used for process improvement and assessing the effectiveness of previous approaches.
+
+### 6 Software Testing Tools
+
+Testing tools play a crucial role in enhancing the efficiency and effectiveness of software testing processes. These tools assist in various tasks, ranging from test design to test case generation and result analysis. Here are categories of testing tools based on their functionality:
+
+#### 6.1 Testing Tool Support
+
+**6.1.1 Selecting Tools**
+- Guidance for managers and testers on selecting tools that align with organizational needs and processes.
+- Consideration of factors such as development choices, evaluation objectives, and execution facilities.
+- A suite of tools might be more appropriate than relying on a single tool to meet specific needs.
+
+#### 6.2 Categories of Tools
+
+**Test Harnesses (Drivers, Stubs)**
+- Provide a controlled environment for launching tests and logging test outputs.
+- Drivers simulate calling modules, while stubs simulate called modules.
+
+**Test Generators**
+- Assist in generating test cases.
+- Generation methods include random, path-based, model-based, or a combination of these.
+
+**Capture/Replay Tools**
+- Automatically replay previously executed tests based on recorded inputs and outputs, such as screens.
+
+**Oracle/File Comparators/Assertion Checking Tools**
+- Help in determining the success or failure of a test outcome.
+
+**Coverage Analyzers and Instrumenters**
+- Coverage analyzers assess which parts of the program flow graph have been exercised based on selected coverage criteria.
+- Instrumenters insert recording probes into the code to enable analysis.
+
+**Tracers**
+- Record the history of a program's execution paths.
+
+**Regression Testing Tools**
+- Support the reexecution of a test suite after a software section has been modified.
+- Assist in selecting a test subset based on the changes made.
+
+**Reliability Evaluation Tools**
+- Support analysis and graphical visualization of test results for assessing reliability-related measures according to selected models.

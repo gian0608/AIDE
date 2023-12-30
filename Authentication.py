@@ -1,26 +1,10 @@
 import streamlit as st
-import streamlit_authenticator as stauth
 import secrets
 import bcrypt
 import re
 import mysql.connector
 import openai
 from mysql.connector import Error
-
-# Credenziali
-credentials = {'usernames': {'user1': 'pass123'}}
-
-# Genera chiave random
-key = secrets.token_urlsafe(16)
-
-# Inizializza login manager
-login_manager = stauth.Authenticate(credentials,
-                                    cookie_name='auth',
-                                    key=key)
-
-# Variabile globale password validata
-validated_password = ""
-
 
 def connetti_database():
     try:
